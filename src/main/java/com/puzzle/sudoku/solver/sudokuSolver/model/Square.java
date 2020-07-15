@@ -1,16 +1,16 @@
 package com.puzzle.sudoku.solver.sudokuSolver.model;
 
-public class Row {
+public class Square {
 	
 	private static int id;
 	private static int[] values;
-
+	
 	public static int getId() {
 		return id;
 	}
 
 	public static void setId(int id) {
-		Row.id = id;
+		Square.id = id;
 	}
 
 	public static int[] getValues() {
@@ -18,7 +18,7 @@ public class Row {
 	}
 
 	public static void setValues(int[] values) {
-		Row.values = values;
+		Square.values = values;
 	}
 
 }

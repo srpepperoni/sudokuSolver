@@ -4,9 +4,6 @@ public class Column {
 	
 	private static int id;
 	private static int[] values;
-	private static Cell[] celdas;
-
-	public Column() {}
 
 	public static int getId() {
 		return id;
@@ -24,12 +21,4 @@ public class Column {
 		Column.values = values;
 	}
 
-	public static Cell[] getCeldas() {
-		return celdas;
-	}
-
-	public static void setCeldas(Cell[] celdas) {
-		Column.celdas = celdas;
-	}
-	
 }

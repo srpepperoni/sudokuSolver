@@ -1,13 +1,28 @@
 package com.puzzle.sudoku.solver.sudokuSolver.model;
 
+import java.util.ArrayList;
+
 public class Cell {
 	
 	private static int id;
 	private static int row;
 	private static int column;
-	private static boolean[] values = {true,true,true,true,true,true,true,true,true};
+	private static ArrayList<Integer> values;
 
-	public Cell() {}
+	public Cell() {
+		super();
+		values = fillDefaultValues();
+	}
+	
+	private ArrayList<Integer> fillDefaultValues(){
+		ArrayList<Integer> defaultValues = new ArrayList<Integer>();
+		
+		for (int i = 1 ; i < 10 ; i++) {
+			defaultValues.add(i);
+		}
+		
+		return defaultValues;
+	}
 
 	public static int getId() {
 		return id;
@@ -33,11 +48,11 @@ public class Cell {
 		Cell.column = column;
 	}
 
-	public static boolean[] getValues() {
+	public static ArrayList<Integer> getValues() {
 		return values;
 	}
 
-	public static void setValues(boolean[] values) {
+	public static void setValues(ArrayList<Integer> values) {
 		Cell.values = values;
 	}
 	

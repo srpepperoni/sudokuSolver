@@ -1,44 +1,52 @@
 package com.puzzle.sudoku.solver.sudokuSolver.model;
 
+import java.util.ArrayList;
+
 public class Sudoku {
 	
-	private static int id;
-	private static Row[] rows;
-	private static Column[] columns;
-	private static Cell[] cells;
-
-	public Sudoku() {}
-
-	public static int getId() {
-		return id;
+	private static ArrayList<Row> rows;
+	private static ArrayList<Column> columns;
+	private static ArrayList<Square> squares;
+	private static ArrayList<Cell> cells;
+	
+	public Sudoku() {
+		super();
+		rows = new ArrayList<Row>();
+		columns = new ArrayList<Column>();
+		squares = new ArrayList<Square>();
+		cells = new ArrayList<Cell>();
 	}
 
-	public static void setId(int id) {
-		Sudoku.id = id;
-	}
-
-	public static Row[] getRows() {
+	public static ArrayList<Row> getRows() {
 		return rows;
 	}
 
-	public static void setRows(Row[] rows) {
+	public static void setRows(ArrayList<Row> rows) {
 		Sudoku.rows = rows;
 	}
 
-	public static Column[] getColumns() {
+	public static ArrayList<Column> getColumns() {
 		return columns;
 	}
 
-	public static void setColumns(Column[] columns) {
+	public static void setColumns(ArrayList<Column> columns) {
 		Sudoku.columns = columns;
 	}
 
-	public static Cell[] getCells() {
+	public static ArrayList<Cell> getCells() {
 		return cells;
 	}
 
-	public static void setCells(Cell[] cells) {
+	public static void setCells(ArrayList<Cell> cells) {
 		Sudoku.cells = cells;
+	}
+
+	public static ArrayList<Square> getSquares() {
+		return squares;
+	}
+
+	public static void setSquares(ArrayList<Square> squares) {
+		Sudoku.squares = squares;
 	}
 	
 }
