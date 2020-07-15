@@ -4,49 +4,83 @@ import java.util.ArrayList;
 
 public class Sudoku {
 	
-	private static ArrayList<Row> rows;
-	private static ArrayList<Column> columns;
-	private static ArrayList<Square> squares;
-	private static ArrayList<Cell> cells;
+	private ArrayList<Row> rows;
+	private ArrayList<Column> columns;
+	private ArrayList<Square> squares;
+	private ArrayList<Cell> cells;
 	
 	public Sudoku() {
 		super();
-		rows = new ArrayList<Row>();
-		columns = new ArrayList<Column>();
-		squares = new ArrayList<Square>();
+		rows = initRows();
+		columns = initColumns();
+		squares = initSquares();
 		cells = new ArrayList<Cell>();
 	}
 
-	public static ArrayList<Row> getRows() {
+	public ArrayList<Row> getRows() {
 		return rows;
 	}
-
-	public static void setRows(ArrayList<Row> rows) {
-		Sudoku.rows = rows;
+	
+	public Row getRowWithId(int id) {
+		return null;
 	}
 
-	public static ArrayList<Column> getColumns() {
+	public void setRows(ArrayList<Row> rows) {
+		this.rows = rows;
+	}
+
+	public ArrayList<Column> getColumns() {
 		return columns;
 	}
 
-	public static void setColumns(ArrayList<Column> columns) {
-		Sudoku.columns = columns;
+	public void setColumns(ArrayList<Column> columns) {
+		this.columns = columns;
 	}
 
-	public static ArrayList<Cell> getCells() {
+	public ArrayList<Cell> getCells() {
 		return cells;
 	}
 
-	public static void setCells(ArrayList<Cell> cells) {
-		Sudoku.cells = cells;
+	public void setCells(ArrayList<Cell> cells) {
+		this.cells = cells;
 	}
 
-	public static ArrayList<Square> getSquares() {
+	public ArrayList<Square> getSquares() {
 		return squares;
 	}
 
-	public static void setSquares(ArrayList<Square> squares) {
-		Sudoku.squares = squares;
+	public void setSquares(ArrayList<Square> squares) {
+		this.squares = squares;
+	}
+	
+	private ArrayList<Row> initRows() {
+		ArrayList<Row> rows = new ArrayList<Row>();
+
+		for (int i = 0; i < 9; i++) {
+			rows.add(new Row(i));
+		}
+		
+		return rows;
+	}
+	
+	private ArrayList<Column> initColumns() {
+		ArrayList<Column> columns = new ArrayList<Column>();
+
+		for (int i = 0; i < 9; i++) {
+			columns.add(new Column(i));
+		}
+		
+		return columns;
+	}
+	
+	private ArrayList<Square> initSquares() {
+		ArrayList<Square> squares = new ArrayList<Square>();
+
+		for (int i = 0; i < 9; i++) {
+			squares.add(new Square(i));
+		}
+		
+		return squares;
 	}
 	
 }

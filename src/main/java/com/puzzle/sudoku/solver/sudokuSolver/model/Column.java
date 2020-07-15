@@ -1,24 +1,42 @@
 package com.puzzle.sudoku.solver.sudokuSolver.model;
 
-public class Column {
-	
-	private static int id;
-	private static int[] values;
+import java.util.ArrayList;
 
-	public static int getId() {
+public class Column {
+
+	private int id;
+	private ArrayList<Integer> values;
+
+	public Column(int id) {
+		super();
+		this.id = id;
+		this.values = fillDefaultValues();
+	}
+
+	private ArrayList<Integer> fillDefaultValues() {
+		ArrayList<Integer> defaultValues = new ArrayList<Integer>();
+
+		for (int i = 1; i < 10; i++) {
+			defaultValues.add(i);
+		}
+
+		return defaultValues;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public static void setId(int id) {
-		Column.id = id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public static int[] getValues() {
+	public ArrayList<Integer> getValues() {
 		return values;
 	}
 
-	public static void setValues(int[] values) {
-		Column.values = values;
+	public void setValues(ArrayList<Integer> values) {
+		this.values = values;
 	}
 
 }
