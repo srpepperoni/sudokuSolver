@@ -12,6 +12,7 @@ public class Sudoku {
 	private HashMap<Integer, ArrayList<Integer>> columns;
 	private HashMap<Integer, ArrayList<Integer>> squares;
 	private ArrayList<Cell> cells;
+	private int cellsSolved;
 	
 	public Sudoku() {
 		super();
@@ -19,6 +20,7 @@ public class Sudoku {
 		columns = initComponent();
 		squares = initComponent();
 		cells = new ArrayList<Cell>();
+		cellsSolved = 0;
 	}
 
 	public ArrayList<Integer> getRowValuesWithId(int id) {
@@ -43,14 +45,11 @@ public class Sudoku {
 		return result;
 	}
 	
-	private ArrayList<Integer> fillDefaultValues() {
-		ArrayList<Integer> defaultValues = new ArrayList<Integer>();
-
-		for (int i = 1; i < 10; i++) {
-			defaultValues.add(i);
-		}
-
-		return defaultValues;
+	public void increseSolution() {
+		cellsSolved++;
 	}
 	
+	public boolean isComplete() {
+		return cellsSolved > 80;
+	}
 }

@@ -13,8 +13,7 @@ public class SudokuServiceImpl implements SudokuService {
 	public Sudoku initSudoku(String initialRows) {
 
 		int idCellCounter = 0;
-		int idLineCounter = 0;
-		int idColumnCounter = 0;
+		int idRowCounter = 0;
 		int idSquareCounter = 0;
 		int auxSquare = 0;
 
@@ -24,16 +23,16 @@ public class SudokuServiceImpl implements SudokuService {
 		int value = 0;
 
 		for (String line : lines) {
-			idColumnCounter = 0;
-			for (int i = 0; i < 9; i++) {
-				cell = new Cell(idCellCounter, idLineCounter, idColumnCounter, idSquareCounter);
-				value = Character.getNumericValue(line.charAt(i));
+			for (int idColumnCounter = 0; idColumnCounter < 9; idColumnCounter++) {
+				cell = new Cell(idCellCounter, idRowCounter, idColumnCounter, idSquareCounter);
+				value = Character.getNumericValue(line.charAt(idColumnCounter));
 
 				if (0 != value) {
 					cell.fixNumber(value);
+					sudoku.increseSolution();
 
-					if (!sudoku.getRowValuesWithId(idLineCounter).contains(Integer.valueOf(value))) {
-						sudoku.getRowValuesWithId(idLineCounter).add(Integer.valueOf(value));
+					if (!sudoku.getRowValuesWithId(idRowCounter).contains(Integer.valueOf(value))) {
+						sudoku.getRowValuesWithId(idRowCounter).add(Integer.valueOf(value));
 					}
 					if (!sudoku.getColumnValuesWithId(idColumnCounter).contains(Integer.valueOf(value))) {
 						sudoku.getColumnValuesWithId(idColumnCounter).add(Integer.valueOf(value));
@@ -44,11 +43,10 @@ public class SudokuServiceImpl implements SudokuService {
 				}
 				sudoku.getCells().add(cell);
 				idCellCounter++;
-				idColumnCounter++;
 				idSquareCounter = (idColumnCounter / 3) + auxSquare;
 			}
-			idLineCounter++;
-			auxSquare = idLineCounter / 3;
+			idRowCounter++;
+			auxSquare = (idRowCounter / 3) * 3;
 		}
 
 		return sudoku;
@@ -56,14 +54,27 @@ public class SudokuServiceImpl implements SudokuService {
 
 	@Override
 	public void resolveSudoku(Sudoku sudoku) {
-
-		sudoku.getCells().stream().forEach(cell -> {
-			if (!cell.isComplete()) {
+		
+		
+		for (Cell cell : sudoku.getCells()) {
+			if(!cell.isComplete()) {
 				cell.removeAlreadyFilledValues(sudoku.getRowValuesWithId(cell.getRow()));
 				cell.removeAlreadyFilledValues(sudoku.getColumnValuesWithId(cell.getColumn()));
 				cell.removeAlreadyFilledValues(sudoku.getSquareValuesWithId(cell.getSquare()));
+				if (cell.isComplete()) {
+					sudoku.getRowValuesWithId(cell.getRow()).add(Integer.valueOf(cell.getValues().get(0)));
+					sudoku.getColumnValuesWithId(cell.getColumn()).add(Integer.valueOf(cell.getValues().get(0)));
+					sudoku.getSquareValuesWithId(cell.getSquare()).add(Integer.valueOf(cell.getValues().get(0)));
+					sudoku.increseSolution();
+				}
 			}
-		});
+		}
+		
+//		drawSudoku(sudoku);
+		
+		if (!sudoku.isComplete()) {
+			resolveSudoku(sudoku);
+		}
 
 	}
 
