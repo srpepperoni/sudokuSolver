@@ -5,13 +5,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.puzzle.sudoku.solver.sudokuSolver.service.InitSudokuService;
+import com.puzzle.sudoku.solver.sudokuSolver.model.Sudoku;
+import com.puzzle.sudoku.solver.sudokuSolver.service.SudokuService;
 
 @RestController
 public class FillController {
 	
 	@Autowired
-	private InitSudokuService initSudokuService;
+	private SudokuService sudokuService;
 	
 	@Value("${sudoku.test}")
 	private String sudokuTest;
@@ -36,7 +37,13 @@ public class FillController {
 	
 	@GetMapping(path = { "/resolve" })
 	public void resolveSudokuTest() {
-		initSudokuService.initSudoku(sudokuTest);
+		Sudoku sudoku = sudokuService.initSudoku(sudokuTest);
+		System.out.println("NUEVO");
+		sudokuService.drawSudoku(sudoku);
+		System.out.println("Resolviendo......");
+		sudokuService.resolveSudoku(sudoku);
+		System.out.println("RESUELTO");
+		sudokuService.drawSudoku(sudoku);
 	}
 	
 }

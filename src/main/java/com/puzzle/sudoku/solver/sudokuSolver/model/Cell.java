@@ -45,5 +45,9 @@ public class Cell {
 		values.clear();
 		values.add(value);
 	}
+	
+	public void removeAlreadyFilledValues(ArrayList<Integer> otherValues) {
+		this.values.removeAll(otherValues);
+	}
 
 }
