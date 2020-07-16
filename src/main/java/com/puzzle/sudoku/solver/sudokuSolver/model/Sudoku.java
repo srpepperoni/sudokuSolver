@@ -1,57 +1,56 @@
 package com.puzzle.sudoku.solver.sudokuSolver.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lombok.Data;
 
 @Data
 public class Sudoku {
 	
-	private ArrayList<Row> rows;
-	private ArrayList<Column> columns;
-	private ArrayList<Square> squares;
+	private HashMap<Integer, ArrayList<Integer>> rows;
+	private HashMap<Integer, ArrayList<Integer>> columns;
+	private HashMap<Integer, ArrayList<Integer>> squares;
 	private ArrayList<Cell> cells;
 	
 	public Sudoku() {
 		super();
-		rows = initRows();
-		columns = initColumns();
-		squares = initSquares();
+		rows = initComponent();
+		columns = initComponent();
+		squares = initComponent();
 		cells = new ArrayList<Cell>();
 	}
 
-	public Row getRowWithId(int id) {
-		return null;
+	public ArrayList<Integer> getRowValuesWithId(int id) {
+		return rows.get(id);
 	}
 	
-	private ArrayList<Row> initRows() {
-		ArrayList<Row> rows = new ArrayList<Row>();
-
-		for (int i = 0; i < 9; i++) {
-			rows.add(new Row(i));
-		}
-		
-		return rows;
+	public ArrayList<Integer> getColumnValuesWithId(int id) {
+		return columns.get(id);
 	}
 	
-	private ArrayList<Column> initColumns() {
-		ArrayList<Column> columns = new ArrayList<Column>();
-
-		for (int i = 0; i < 9; i++) {
-			columns.add(new Column(i));
-		}
-		
-		return columns;
+	public ArrayList<Integer> getSquareValuesWithId(int id) {
+		return squares.get(id);
 	}
 	
-	private ArrayList<Square> initSquares() {
-		ArrayList<Square> squares = new ArrayList<Square>();
+	private HashMap<Integer, ArrayList<Integer>> initComponent() {
+		HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>();
 
 		for (int i = 0; i < 9; i++) {
-			squares.add(new Square(i));
+			result.put(i, fillDefaultValues());
 		}
 		
-		return squares;
+		return result;
+	}
+	
+	private ArrayList<Integer> fillDefaultValues() {
+		ArrayList<Integer> defaultValues = new ArrayList<Integer>();
+
+		for (int i = 1; i < 10; i++) {
+			defaultValues.add(i);
+		}
+
+		return defaultValues;
 	}
 	
 }

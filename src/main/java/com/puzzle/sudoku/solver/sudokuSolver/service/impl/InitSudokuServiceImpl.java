@@ -16,20 +16,25 @@ public class InitSudokuServiceImpl implements InitSudokuService {
 		int idLineCounter = 0;
 		int idColumnCounter = 0;
 		int idSquareCounter = 0;
-		
 		int auxSquare = 0;
-		
-		Sudoku sudoku = new Sudoku();
 
 		String[] lines = initialRows.split(",");
+		Sudoku sudoku = new Sudoku();
 		Cell cell = null;
+		int value = 0;
 
 		for (String line : lines) {
 			idColumnCounter = 0;
 			for (int i = 0; i < 9; i++) {
 				cell = new Cell(idCellCounter, idLineCounter, idColumnCounter, idSquareCounter);
-				if (0 != Character.getNumericValue(line.charAt(i))) {
-					cell.fixNumber(Character.getNumericValue(line.charAt(i)));
+				value = Character.getNumericValue(line.charAt(i));
+				
+				if (0 != value) {
+					cell.fixNumber(value);
+					
+					sudoku.getRowValuesWithId(idLineCounter).remove(Integer.valueOf(value));
+					sudoku.getColumnValuesWithId(idColumnCounter).remove(Integer.valueOf(value));
+					sudoku.getSquareValuesWithId(idSquareCounter).remove(Integer.valueOf(value));
 				}
 				sudoku.getCells().add(cell);
 				idCellCounter++;
