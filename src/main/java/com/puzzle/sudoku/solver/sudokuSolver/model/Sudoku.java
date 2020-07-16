@@ -2,6 +2,9 @@ package com.puzzle.sudoku.solver.sudokuSolver.model;
 
 import java.util.ArrayList;
 
+import lombok.Data;
+
+@Data
 public class Sudoku {
 	
 	private ArrayList<Row> rows;
@@ -17,40 +20,8 @@ public class Sudoku {
 		cells = new ArrayList<Cell>();
 	}
 
-	public ArrayList<Row> getRows() {
-		return rows;
-	}
-	
 	public Row getRowWithId(int id) {
 		return null;
-	}
-
-	public void setRows(ArrayList<Row> rows) {
-		this.rows = rows;
-	}
-
-	public ArrayList<Column> getColumns() {
-		return columns;
-	}
-
-	public void setColumns(ArrayList<Column> columns) {
-		this.columns = columns;
-	}
-
-	public ArrayList<Cell> getCells() {
-		return cells;
-	}
-
-	public void setCells(ArrayList<Cell> cells) {
-		this.cells = cells;
-	}
-
-	public ArrayList<Square> getSquares() {
-		return squares;
-	}
-
-	public void setSquares(ArrayList<Square> squares) {
-		this.squares = squares;
 	}
 	
 	private ArrayList<Row> initRows() {

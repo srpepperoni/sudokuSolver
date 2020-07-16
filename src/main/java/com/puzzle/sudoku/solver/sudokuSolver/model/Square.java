@@ -2,6 +2,9 @@ package com.puzzle.sudoku.solver.sudokuSolver.model;
 
 import java.util.ArrayList;
 
+import lombok.Data;
+
+@Data
 public class Square {
 
 	private int id;
@@ -21,22 +24,6 @@ public class Square {
 		}
 
 		return defaultValues;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public ArrayList<Integer> getValues() {
-		return values;
-	}
-
-	public void setValues(ArrayList<Integer> values) {
-		this.values = values;
 	}
 
 }

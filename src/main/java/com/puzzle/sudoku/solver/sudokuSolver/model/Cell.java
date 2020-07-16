@@ -2,6 +2,9 @@ package com.puzzle.sudoku.solver.sudokuSolver.model;
 
 import java.util.ArrayList;
 
+import lombok.Data;
+
+@Data
 public class Cell {
 	
 	private int id;
@@ -19,6 +22,7 @@ public class Cell {
 		super();
 		this.id = id;
 		this.row = row;
+		this.column = column;
 		this.square = square;
 		this.values = fillDefaultValues();
 	}
@@ -32,45 +36,14 @@ public class Cell {
 		
 		return defaultValues;
 	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getRow() {
-		return this.row;
-	}
-
-	public void setRow(int row) {
-		this.row = row;
-	}
-
-	public int getColumn() {
-		return this.column;
-	}
-
-	public void setColumn(int column) {
-		this.column = column;
-	}
-
-	public ArrayList<Integer> getValues() {
-		return this.values;
-	}
-
-	public void setValues(ArrayList<Integer> values) {
-		this.values = values;
-	}
-
-	public int getSquare() {
-		return this.square;
-	}
-
-	public void setSquare(int square) {
-		this.square = square;
+	
+	public boolean isComplete() {
+		return values.size() == 1;
 	}
 	
+	public void fixNumber(int value) {
+		values.clear();
+		values.add(value);
+	}
+
 }
