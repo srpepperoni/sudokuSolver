@@ -37,7 +37,7 @@ public class Sudoku {
 		HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>();
 
 		for (int i = 0; i < 9; i++) {
-			result.put(i, fillDefaultValues());
+			result.put(i, new ArrayList<Integer>());
 		}
 		
 		return result;

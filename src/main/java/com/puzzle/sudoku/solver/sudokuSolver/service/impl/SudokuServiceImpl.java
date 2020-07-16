@@ -32,9 +32,15 @@ public class SudokuServiceImpl implements SudokuService {
 				if (0 != value) {
 					cell.fixNumber(value);
 
-					sudoku.getRowValuesWithId(idLineCounter).remove(Integer.valueOf(value));
-					sudoku.getColumnValuesWithId(idColumnCounter).remove(Integer.valueOf(value));
-					sudoku.getSquareValuesWithId(idSquareCounter).remove(Integer.valueOf(value));
+					if (!sudoku.getRowValuesWithId(idLineCounter).contains(Integer.valueOf(value))) {
+						sudoku.getRowValuesWithId(idLineCounter).add(Integer.valueOf(value));
+					}
+					if (!sudoku.getColumnValuesWithId(idColumnCounter).contains(Integer.valueOf(value))) {
+						sudoku.getColumnValuesWithId(idColumnCounter).add(Integer.valueOf(value));
+					}
+					if (!sudoku.getSquareValuesWithId(idSquareCounter).contains(Integer.valueOf(value))) {
+						sudoku.getSquareValuesWithId(idSquareCounter).add(Integer.valueOf(value));
+					}
 				}
 				sudoku.getCells().add(cell);
 				idCellCounter++;
@@ -52,7 +58,6 @@ public class SudokuServiceImpl implements SudokuService {
 	public void resolveSudoku(Sudoku sudoku) {
 
 		sudoku.getCells().stream().forEach(cell -> {
-			System.out.println("CELDA: " + cell.getId());
 			if (!cell.isComplete()) {
 				cell.removeAlreadyFilledValues(sudoku.getRowValuesWithId(cell.getRow()));
 				cell.removeAlreadyFilledValues(sudoku.getColumnValuesWithId(cell.getColumn()));
